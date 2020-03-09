@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.IO;
 using System.Collections;
 
@@ -15,7 +16,7 @@ public class AssetBundleTest : MonoBehaviour
 	#endif
 
 	[SerializeField] private RawImage rawImage;
-	[SerializeField] private Button button;
+	[SerializeField] private UIController uiController;
 
 	private Texture2D defaultTexture;
 
@@ -30,20 +31,20 @@ public class AssetBundleTest : MonoBehaviour
 
 	public void OnLoadAssetBundle()
 	{
-		this.StartCoroutine(this.LoadAssetBundle(TRIAL_COUNT));
+		this.StartCoroutine(this.LoadAssetBundle());
 	}
 
-	private IEnumerator LoadAssetBundle(int trialCount)
+	private IEnumerator LoadAssetBundle()
 	{
 		this.rawImage.texture = this.defaultTexture;
-		this.button.interactable = false;
+		this.uiController.SetButtonInteractable(false);
 
 		string path = Utility.persistentDataPath + "/" + testAssetBundlePath;
 
 		System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
 		sw.Start();
 
-		for (int i = 0; i < trialCount; i++) {
+		for (int i = 0; i < TRIAL_COUNT; i++) {
 			AssetBundleCreateRequest createRequest = AssetBundle.LoadFromFileAsync(path);
 			yield return createRequest;
 
@@ -58,11 +59,15 @@ public class AssetBundleTest : MonoBehaviour
 
 			this.rawImage.texture = texture;
 			this.rawImage.SetNativeSize();
+
+			this.uiController.SetProgressText(TRIAL_COUNT, i + 1);
 		}
 
 		sw.Stop();
-		Debug.Log(sw.Elapsed);
+		this.uiController.SetProcessedTime(sw.Elapsed.ToString());
 
-		this.button.interactable = true;
+		this.uiController.SetButtonInteractable(true);
+		Resources.UnloadUnusedAssets();
+		GC.Collect();
 	}
 }

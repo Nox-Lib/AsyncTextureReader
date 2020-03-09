@@ -12,6 +12,7 @@ public class UIController : MonoBehaviour
 	[SerializeField] private Button button1;
 	[SerializeField] private Button button2;
 	[SerializeField] private Button button3;
+	[SerializeField] private Button button4;
 
 	private int frameCount = 0;
 	private float prevTime = 0f;
@@ -63,5 +64,6 @@ public class UIController : MonoBehaviour
 		#else
 		this.button3.interactable = interactable;
 		#endif
+		this.button4.interactable = interactable;
 	}
 }
