@@ -14,12 +14,15 @@ public class AssetBundleTest : MonoBehaviour
 	private const string testAssetBundlePath = "AssetBundle/ios/test.unity3d";
 	#endif
 
-	[SerializeField] private Texture2D defaultTexture;
 	[SerializeField] private RawImage rawImage;
 	[SerializeField] private Button button;
 
+	private Texture2D defaultTexture;
+
 	private void Start()
 	{
+		this.defaultTexture = Resources.Load<Texture2D>(Utility.defaultTexturePath);
+
 		string filePath = Application.dataPath + "/" + testAssetBundlePath;
 		byte[] byteData = File.ReadAllBytes(filePath);
 		Utility.SaveByteData(Utility.persistentDataPath + "/" + testAssetBundlePath, byteData);

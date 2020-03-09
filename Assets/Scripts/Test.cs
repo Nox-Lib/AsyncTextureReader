@@ -7,9 +7,15 @@ public class Test : MonoBehaviour
 {
 	private const int TRIAL_COUNT = 100;
 
-	[SerializeField] private Texture2D defaultTexture;
 	[SerializeField] private RawImage rawImage;
 	[SerializeField] private UIController uIController;
+
+	private Texture2D defaultTexture;
+
+	private void Start()
+	{
+		this.defaultTexture = Resources.Load<Texture2D>(Utility.defaultTexturePath);
+	}
 
 
 	public void OnLoadImage()

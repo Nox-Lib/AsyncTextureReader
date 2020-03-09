@@ -18,6 +18,8 @@ public static class Utility
 	public static readonly string testImagePath_Android = persistentDataPath + "/Image/test_android_etc2.png";
 	public static readonly string testImagePath_iOS = persistentDataPath + "/Image/test_ios_astc4x4.png";
 
+	public static readonly string defaultTexturePath = "Image/transparent";
+
 	public static TextureFormat UseTextureFormat {
 		get {
 			#if UNITY_ANDROID

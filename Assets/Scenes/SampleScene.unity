@@ -672,7 +672,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebdc240a2133c4376a28573cbfe16c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultTexture: {fileID: 2800000, guid: 95bcf5c9dd36c40afba98556e279c61b, type: 3}
   rawImage: {fileID: 985066086}
   uIController: {fileID: 1001467366}
 --- !u!114 &1001467364
