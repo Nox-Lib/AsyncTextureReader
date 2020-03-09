@@ -1,5 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
+#if UNITY_ANDROID
+using UnityEngine.Networking;
+#endif
 using System;
 using System.IO;
 using System.Collections;
@@ -9,28 +12,51 @@ public class AssetBundleTest : MonoBehaviour
 	private const int TRIAL_COUNT = 100;
 
 	#if UNITY_ANDROID
-	private const string testAssetBundlePath = "AssetBundle/android/test.unity3d";
+	private const string testAssetBundlePath = "assetbundle/android/test.unity3d";
 	#endif
 	#if UNITY_IOS
-	private const string testAssetBundlePath = "AssetBundle/ios/test.unity3d";
+	private const string testAssetBundlePath = "assetbundle/ios/test.unity3d";
 	#endif
 
 	[SerializeField] private RawImage rawImage;
 	[SerializeField] private UIController uiController;
 
 	private Texture2D defaultTexture;
+	private bool isInitialized;
 
 	private void Start()
 	{
 		this.defaultTexture = Resources.Load<Texture2D>(Utility.defaultTexturePath);
+		this.StartCoroutine(this.Initialize());
+	}
 
-		string filePath = Application.dataPath + "/" + testAssetBundlePath;
-		byte[] byteData = File.ReadAllBytes(filePath);
+	private IEnumerator Initialize()
+	{
+		this.isInitialized = false;
+
+		string filePath = Path.Combine(Application.streamingAssetsPath, testAssetBundlePath);
+		byte[] byteData;
+
+		#if UNITY_EDITOR || UNITY_IOS
+		filePath = "file://" + filePath;
+		#endif
+
+		using (UnityWebRequest request = UnityWebRequest.Get(filePath)) {
+			yield return request.SendWebRequest();
+			byteData = request.downloadHandler.data;
+		}
+
 		Utility.SaveByteData(Utility.persistentDataPath + "/" + testAssetBundlePath, byteData);
+
+		this.isInitialized = true;
+		yield break;
 	}
 
 	public void OnLoadAssetBundle()
 	{
+		if (!this.isInitialized) {
+			return;
+		}
 		this.StartCoroutine(this.LoadAssetBundle());
 	}
 
