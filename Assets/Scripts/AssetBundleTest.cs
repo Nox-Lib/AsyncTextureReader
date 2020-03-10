@@ -71,7 +71,9 @@ public class AssetBundleTest : MonoBehaviour
 		sw.Start();
 
 		for (int i = 0; i < TRIAL_COUNT; i++) {
-			AssetBundleCreateRequest createRequest = AssetBundle.LoadFromFileAsync(path);
+			byte[] byteData = Utility.LoadByteData(path);
+			// decryption
+			AssetBundleCreateRequest createRequest = AssetBundle.LoadFromMemoryAsync(byteData);
 			yield return createRequest;
 
 			AssetBundle assetBundle = createRequest.assetBundle;
