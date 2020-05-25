@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System;
 using System.Collections;
+using AsyncTextureRead;
 
 public class Test : MonoBehaviour
 {
