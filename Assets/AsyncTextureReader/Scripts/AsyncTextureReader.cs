@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace AsyncTextureRead
+namespace AsyncReadTexture
 {
 	public sealed unsafe class AsyncTextureReader : MonoBehaviour
 	{

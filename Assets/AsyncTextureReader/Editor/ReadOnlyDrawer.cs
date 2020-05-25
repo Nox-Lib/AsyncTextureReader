@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-namespace AsyncTextureRead
+namespace AsyncReadTexture
 {
 	[CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
 	public class ReadOnlyDrawer : PropertyDrawer

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace AsyncTextureRead
+namespace AsyncReadTexture
 {
 	public class ReadOnlyAttribute : PropertyAttribute
 	{
