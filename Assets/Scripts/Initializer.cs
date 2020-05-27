@@ -9,6 +9,8 @@ public class Initializer : MonoBehaviour
 
 	private void Awake()
 	{
+		Application.targetFrameRate = 60;
+
 		if (!File.Exists(Utility.testImagePath)) {
 			Utility.SaveByteData(Utility.testImagePath, this.testImage.EncodeToPNG());
 		}
