@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-#if UNITY_ANDROID
 using UnityEngine.Networking;
-#endif
 using System;
 using System.IO;
 using System.Collections;
