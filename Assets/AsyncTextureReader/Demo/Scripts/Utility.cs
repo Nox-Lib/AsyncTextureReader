@@ -27,6 +27,8 @@ public static class Utility
 			#endif
 			#if UNITY_IOS
 			return TextureFormat.ASTC_RGB_4x4;
+			#else
+			return TextureFormat.RGBA32;
 			#endif
 		}
 	}

@@ -14,6 +14,8 @@ public class AssetBundleTest : MonoBehaviour
 	#endif
 	#if UNITY_IOS
 	private const string testAssetBundlePath = "assetbundle/ios/test.unity3d";
+	#else
+	private const string testAssetBundlePath = "";
 	#endif
 
 	[SerializeField] private RawImage rawImage;
@@ -25,14 +27,14 @@ public class AssetBundleTest : MonoBehaviour
 	private void Start()
 	{
 		this.defaultTexture = Resources.Load<Texture2D>(Utility.defaultTexturePath);
-		this.StartCoroutine(this.Initialize());
+		if (!string.IsNullOrEmpty(testAssetBundlePath)) {
+			this.StartCoroutine(this.Initialize());
+		}
 	}
 
 	private IEnumerator Initialize()
 	{
 		this.isInitialized = false;
-
-		Debug.Log(Application.streamingAssetsPath);
 
 		string filePath = Path.Combine(Application.streamingAssetsPath, testAssetBundlePath);
 		byte[] byteData;

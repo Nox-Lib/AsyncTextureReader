@@ -61,9 +61,10 @@ public class UIController : MonoBehaviour
 		this.button2.interactable = interactable;
 		#if UNITY_EDITOR
 		this.button3.interactable = false;
+		this.button4.interactable = false;
 		#else
 		this.button3.interactable = interactable;
-		#endif
 		this.button4.interactable = interactable;
+		#endif
 	}
 }
