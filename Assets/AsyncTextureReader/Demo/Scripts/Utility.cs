@@ -25,7 +25,11 @@ public static class Utility
 			#if UNITY_ANDROID
 			return TextureFormat.ETC2_RGBA8;
 			#elif UNITY_IOS
-			return TextureFormat.ASTC_RGB_4x4;
+			#if UNITY_2019_ON_NEWER
+			return TextureFormat.ASTC;
+			#else
+			return TextureFormat.ASTC_RGBA_4x4;
+			#endif
 			#else
 			return TextureFormat.RGBA32;
 			#endif
