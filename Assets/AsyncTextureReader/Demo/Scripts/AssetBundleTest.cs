@@ -11,8 +11,7 @@ public class AssetBundleTest : MonoBehaviour
 
 	#if UNITY_ANDROID
 	private const string testAssetBundlePath = "assetbundle/android/test.unity3d";
-	#endif
-	#if UNITY_IOS
+	#elif UNITY_IOS
 	private const string testAssetBundlePath = "assetbundle/ios/test.unity3d";
 	#else
 	private const string testAssetBundlePath = "";

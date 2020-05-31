@@ -24,8 +24,7 @@ public static class Utility
 		get {
 			#if UNITY_ANDROID
 			return TextureFormat.ETC2_RGBA8;
-			#endif
-			#if UNITY_IOS
+			#elif UNITY_IOS
 			return TextureFormat.ASTC_RGB_4x4;
 			#else
 			return TextureFormat.RGBA32;
