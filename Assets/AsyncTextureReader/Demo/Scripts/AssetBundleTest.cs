@@ -32,6 +32,8 @@ public class AssetBundleTest : MonoBehaviour
 	{
 		this.isInitialized = false;
 
+		Debug.Log(Application.streamingAssetsPath);
+
 		string filePath = Path.Combine(Application.streamingAssetsPath, testAssetBundlePath);
 		byte[] byteData;
 
