@@ -20,7 +20,7 @@ public class UIController : MonoBehaviour
 
 	private void Start()
 	{
-		#if !UNITY_EDITOR
+		#if UNITY_ANDROID || UNITY_IOS
 		this.testButtonText.text = Utility.UseTextureFormat.ToString() + " RAW TEXTURE";
 		#endif
 		this.SetButtonInteractable(true);
@@ -59,12 +59,17 @@ public class UIController : MonoBehaviour
 	{
 		this.button1.interactable = interactable;
 		this.button2.interactable = interactable;
+
 		#if UNITY_EDITOR
 		this.button3.interactable = false;
-		this.button4.interactable = false;
 		#else
 		this.button3.interactable = interactable;
+		#endif
+
+		#if UNITY_ANDROID || UNITY_IOS
 		this.button4.interactable = interactable;
+		#else
+		this.button4.interactable = false;
 		#endif
 	}
 }

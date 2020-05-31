@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/AsyncTextureReader/Demo/Scenes/SampleScene.unity
     guid: bec4471aa9b2e4bbba7c97bde4bce7d6
   m_configObjects: {}
